@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Screen Dimensions</title>
+</head>
+<body>
+  <h1 id="screen-dimensions"></h1>
+  <script>
+    function updateScreenDimensions() {
+      const screenHeight = window.innerHeight;
+      const screenWidth = window.innerWidth;
+      const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
+      document.getElementById("screen-dimensions").innerText = dimensions;
+    }
+    updateScreenDimensions();
+    window.addEventListener("resize", updateScreenDimensions);
+  </script>
+</body>
+</html>
