@@ -6,26 +6,39 @@
 <body>
   <h1 id="screen-dimensions"></h1>
   <script>
-  function updateScreenDimensions() {
-    const screenHeight = window.innerHeight;
-    const screenWidth = window.innerWidth;
-    const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
-    document.getElementById("screen-dimensions").innerText = dimensions;
-  }
+    function updateScreenDimensions() {
+      const screenHeight = window.innerHeight;
+      const screenWidth = window.innerWidth;
+      const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
+      document.getElementById("screen-dimensions").innerText = dimensions;
+    }
+    updateScreenDimensions();
+    window.addEventListener("resize", updateScreenDimensions);
 
-  function redirectToHomePage() {
-    window.location.href = "home.html";
-  }
+    // Handle long press on image
+    let timer;
+    const img = document.querySelector("img");
 
-  updateScreenDimensions();
-  window.addEventListener("resize", updateScreenDimensions);
+    img.addEventListener("touchstart", function() {
+      timer = setTimeout(function() {
+        window.location.href = "home.html";
+      }, 5000); // 5000 ms = 5 seconds
+    });
 
-  document.querySelector("img").addEventListener("click", function() {
-    // Fungsi ini akan dipanggil ketika gambar ditekan
-    setTimeout(redirectToHomePage, 5000); // Menunggu 5 detik (5000 milidetik) sebelum mengalihkan ke halaman home.html
-  });
-</script>
+    img.addEventListener("touchend", function() {
+      clearTimeout(timer);
+    });
 
+    img.addEventListener("mousedown", function() {
+      timer = setTimeout(function() {
+        window.location.href = "home.html";
+      }, 5000); // 5000 ms = 5 seconds
+    });
+
+    img.addEventListener("mouseup", function() {
+      clearTimeout(timer);
+    });
+  </script>
   <style>
     body {
       min-height: 100px;
@@ -34,10 +47,10 @@
       margin: 0 auto;
       text-align: center;
     }
-    img{
+    img {
       width: 30vw;
     }
   </style>
-  <img src="pngtree-vector-hand-icon-png-image_4232118.jpg" id="screen-dimensions" width="50%">
+  <img src="pngtree-vector-hand-icon-png-image_4232118.jpg" width="50%">
 </body>
 </html>
