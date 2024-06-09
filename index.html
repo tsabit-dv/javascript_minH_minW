@@ -6,15 +6,26 @@
 <body>
   <h1 id="screen-dimensions"></h1>
   <script>
-    function updateScreenDimensions() {
-      const screenHeight = window.innerHeight;
-      const screenWidth = window.innerWidth;
-      const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
-      document.getElementById("screen-dimensions").innerText = dimensions;
-    }
-    updateScreenDimensions();
-    window.addEventListener("resize", updateScreenDimensions);
-  </script>
+  function updateScreenDimensions() {
+    const screenHeight = window.innerHeight;
+    const screenWidth = window.innerWidth;
+    const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
+    document.getElementById("screen-dimensions").innerText = dimensions;
+  }
+
+  function redirectToHomePage() {
+    window.location.href = "home.html";
+  }
+
+  updateScreenDimensions();
+  window.addEventListener("resize", updateScreenDimensions);
+
+  document.querySelector("img").addEventListener("click", function() {
+    // Fungsi ini akan dipanggil ketika gambar ditekan
+    setTimeout(redirectToHomePage, 5000); // Menunggu 5 detik (5000 milidetik) sebelum mengalihkan ke halaman home.html
+  });
+</script>
+
   <style>
     body {
       min-height: 100px;
@@ -27,6 +38,6 @@
       width: 30vw;
     }
   </style>
-  <img src="pngtree-vector-hand-icon-png-image_4232118.jpg" width="50%">
+  <img src="pngtree-vector-hand-icon-png-image_4232118.jpg" id="screen-dimensions" width="50%">
 </body>
 </html>
