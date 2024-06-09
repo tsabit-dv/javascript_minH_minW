@@ -1,58 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Screen Dimensions</title>
-</head>
-<body>
-  <h1 id="screen-dimensions"></h1>
-  <script>
-    function updateScreenDimensions() {
-      const screenHeight = window.innerHeight;
-      const screenWidth = window.innerWidth;
-      const dimensions = `Screen Height: ${screenHeight}px, Screen Width: ${screenWidth}px`;
-      document.getElementById("screen-dimensions").innerText = dimensions;
-    }
-    updateScreenDimensions();
-    window.addEventListener("resize", updateScreenDimensions);
+<html lang="en">
 
-    // Handle long press on button
-    let timer;
-    const button = document.querySelector("#image-button");
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="text-align: center;">
+  <button
+    style="background-size: cover; height:1000px; background-repeat: no-repeat; width: 1000px; background-image: url('https://img.freepik.com/premium-vector/electronic-hand-scan-technology-blue-handprint-cyber-security-fingerprints-identification_252172-143.jpg?w=740');"
+    id="myButton" onmousedown="startTimer()" ontouchstart="startTimer()" onmouseup="stopTimer()"
+    ontouchend="stopTimer()"></button>
+  <script>
+    
+    var timer;
+    var timeElapsed = 0;
 
     function startTimer() {
-      timer = setTimeout(function() {
-        window.location.href = "home.html";
-      }, 3000); // 3000 ms = 3 seconds
+      timer = setInterval(function () {
+        timeElapsed += 100;
+        if (timeElapsed >= 5000) {
+          window.location.href = "home.html";
+        }
+      }, 100);
     }
 
-    function clearTimer() {
-      clearTimeout(timer);
+    function stopTimer() {
+      clearInterval(timer);
+      timeElapsed = 0;
     }
-
-    button.addEventListener("touchstart", startTimer);
-    button.addEventListener("touchend", clearTimer);
-    button.addEventListener("mousedown", startTimer);
-    button.addEventListener("mouseup", clearTimer);
   </script>
-  <style>
-    body {
-      min-height: 100px;
-      min-width: 100px;
-      justify-content: center;
-      margin: 0 auto;
-      text-align: center;
-    }
-    #image-button {
-      width: 30vw;
-      height: 30vw;
-      background-image: url('pngtree-vector-hand-icon-png-image_4232118.jpg');
-      background-size: cover;
-      background-position: center;
-      border: none;
-      cursor: pointer;
-      outline: none;
-    }
-  </style>
-  <button id="image-button"></button>
+
+  </script>
 </body>
+
 </html>
