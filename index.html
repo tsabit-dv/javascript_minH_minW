@@ -15,29 +15,24 @@
     updateScreenDimensions();
     window.addEventListener("resize", updateScreenDimensions);
 
-    // Handle long press on image
+    // Handle long press on button
     let timer;
-    const img = document.querySelector("img");
+    const button = document.querySelector("#image-button");
 
-    img.addEventListener("touchstart", function() {
+    function startTimer() {
       timer = setTimeout(function() {
         window.location.href = "home.html";
-      }, 5000); // 5000 ms = 5 seconds
-    });
+      }, 3000); // 3000 ms = 3 seconds
+    }
 
-    img.addEventListener("touchend", function() {
+    function clearTimer() {
       clearTimeout(timer);
-    });
+    }
 
-    img.addEventListener("mousedown", function() {
-      timer = setTimeout(function() {
-        window.location.href = "home.html";
-      }, 5000); // 5000 ms = 5 seconds
-    });
-
-    img.addEventListener("mouseup", function() {
-      clearTimeout(timer);
-    });
+    button.addEventListener("touchstart", startTimer);
+    button.addEventListener("touchend", clearTimer);
+    button.addEventListener("mousedown", startTimer);
+    button.addEventListener("mouseup", clearTimer);
   </script>
   <style>
     body {
@@ -47,10 +42,17 @@
       margin: 0 auto;
       text-align: center;
     }
-    img {
+    #image-button {
       width: 30vw;
+      height: 30vw;
+      background-image: url('pngtree-vector-hand-icon-png-image_4232118.jpg');
+      background-size: cover;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      outline: none;
     }
   </style>
-  <img src="pngtree-vector-hand-icon-png-image_4232118.jpg" width="50%">
+  <button id="image-button"></button>
 </body>
 </html>
